@@ -7,33 +7,33 @@ const Section1 = () => {
       id="section1"
       className="flex flex-row bg-slate-100 dark:bg-slate-800 dark:text-white w-full"
     >
-      <div className="flex-1 flex flex-col sm:pl-20 p-4 sm:pt-52 ">
+      <div className="flex-1 flex flex-col pl-8 sm:pl-12 md:pl-20 p-4 pt-12 sm:pt-20 md:pt-52 ">
         <span className="text-xs sm:text-lg">Hello, I'm</span>
         <span className="text-md sm:text-3xl dark:text-cyan-300 text-cyan-500 ">
           Dito Bayu Adhitya
         </span>
         <span className="text-xs sm:text-xl">Programmer</span>
-        <span className="text-xs sm:text-md">
+        <span className="text-xs sm:text-lg">
           My name is Dito Bayu Adhitya. I'm still in college now but very open
           to doing projects together
         </span>
-        <div className="flex flex-row items-center mt-4 gap-8">
+        <div className="flex flex-row items-center mt-4 gap-2 sm:gap-8">
           <a
             href="#section5"
-            className="w-fit bg-cyan-400 rounded-lg p-2 px-4 font-semibold shadow-md hover:shadow-lg hover:shadow-cyan-500/50 shadow-cyan-500/50 duration-100"
+            className="text-xs sm:text-lg bg-cyan-400 rounded-lg py-2 px-2 sm:px-4 font-semibold shadow-md hover:shadow-lg hover:shadow-cyan-500/50 shadow-cyan-500/50 duration-100"
           >
             Lets Talk
           </a>
           <a
             href="/logo192.png"
             download="Dito-Bayu-CV"
-            className="border-b-2 border-cyan-500"
+            className="text-xs sm:text-lg border-b-2 border-cyan-500"
           >
             Download CV
           </a>
         </div>
-        <div className="flex flex-row my-12 gap-4 items-center py-4">
-          <div className="mr-8 text-xs sm:text-md">Check Out My</div>
+        <div className="flex flex-row my-2 md:my-12 gap-1 sm:gap-4 items-center py-4">
+          <div className="mr-2 sm:mr-8 text-xs sm:text-md">Check Out My</div>
           <a
             className="mr-2"
             href="https://www.linkedin.com/in/dito-bayu-adhitya-36198a227/"
@@ -75,8 +75,8 @@ const Section1 = () => {
           </a>
         </div>
       </div>
-      <div className="w-6/12 flex justify-center items-center">
-        <div className="h-24 sm:h-96 w-24 sm:w-96 rounded-full overflow-hidden floating">
+      <div className="w-4/12 md:w-6/12 flex justify-center items-center mr-4">
+        <div className="h-24 sm:h-52 md:h-96 w-24 sm:w-52 md:w-96 rounded-full overflow-hidden floating">
           <img src={foto} className="" alt="images" />
         </div>
       </div>

@@ -3,9 +3,9 @@ import React from "react";
 const Footer = () => {
   return (
     <div>
-      <div className="flex flex-row gap-2 justify-between dark:bg-slate-900 bg-slate-200 p-8 px-20 text-sm w-full">
-        <div className="text-xl">Portfolio</div>
-        <div className="text-md">
+      <div className="flex flex-row gap-2 justify-between dark:bg-slate-900 bg-slate-200 p-4 text-xs sm:text-lg sm:p-8 px-4 pb-20 sm:pb-24 md:pb-8 sm:px-20 w-full">
+        <div className="text-md sm:text-xl">Portfolio</div>
+        <div className="">
           {/* Jl. Kromodikoro, Senggreng, Sumberpucung, Malang */}
           Malang
         </div>

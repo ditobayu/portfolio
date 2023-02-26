@@ -75,26 +75,28 @@ const Section4 = () => {
   return (
     <div
       id="section4"
-      className=" flex flex-col dark:bg-slate-900 bg-slate-200 pt-12 p-20 w-full overflow-x-scroll noScrollbar"
+      className=" flex flex-col dark:bg-slate-900 bg-slate-200 pt-4 sm:pt-8 md:pt-12 p-4 sm:p-12 md:p-20 w-full overflow-x-scroll noScrollbar"
     >
       <div>Testimonials</div>
-      <div className="mt-4 text-4xl font-semibold mb-20">What Client Say</div>
+      <div className="mt-4 text-4xl font-semibold mb-4 sm:mb-20">
+        What Client Say
+      </div>
       <motion.div className="flex flex-row justify-center gap-4 ">
         <AnimatePresence>
-          {/* <div>Be my first testimonial</div> */}
-          {currentData.map((data) => (
+          <div>Be my first testimonial</div>
+          {/* {currentData.map((data) => (
             <Testi key={data.name} data={data} />
-          ))}
+          ))} */}
         </AnimatePresence>
       </motion.div>
-      <div className="flex  flex-row justify-center gap-4 mt-4">
+      {/* <div className="flex  flex-row justify-center gap-4 mt-4">
         {totalHalaman.map((data) => (
           <button
             className="rounded-full w-4 h-4 duration-300 focus:bg-cyan-500 bg-transparent border-2 border-cyan-500"
             onClick={() => setPage(data)}
           ></button>
         ))}
-      </div>
+      </div> */}
     </div>
   );
 };
