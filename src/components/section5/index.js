@@ -20,7 +20,7 @@ const Section5 = () => {
   const [response, setResponse] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch("http://localhost:3001/auth/sendfeedback", {
+    await fetch("https://asdasdasd-ditobayu.vercel.app/auth/sendfeedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
