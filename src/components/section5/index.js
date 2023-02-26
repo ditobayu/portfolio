@@ -16,24 +16,30 @@ const Section5 = () => {
     } else if (name === "message") {
       setData({ ...data, message: value });
     }
-    console.log(e.target.value);
-    console.log(e.target.name);
-    console.log(data);
   };
   const [response, setResponse] = useState("");
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await fetch("https://asdasdasd-ditobayu.vercel.app/auth/sendfeedback", {
+    await fetch("http://localhost:3001/auth/sendfeedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: {
+      body: JSON.stringify({
         name: data.name,
         subject: "Portfolio Message",
-        message: "email : " + data.email + "message : " + data.message,
-      },
+        feedback: "email : " + data.email + "\n " + "message : " + data.message,
+      }),
     })
-      .then((res) => setResponse(res))
-      .catch((err) => setResponse(err.message));
+      .then((res) => {
+        setResponse(res?.json()?.message);
+      })
+      .catch((res) => {
+        setResponse(res?.json()?.message);
+      });
+    setData({
+      name: "",
+      email: "",
+      message: "",
+    });
   };
   return (
     <div>
@@ -108,7 +114,6 @@ const Section5 = () => {
               </button>
             </div>
           </form>
-          {/* {response} */}
         </div>
       </div>
     </div>
