@@ -19,18 +19,21 @@ const Footer = () => {
           <a
             className="hover:text-cyan-500 duration-200 hover:shadow-cyan-500/50 "
             href="https://www.linkedin.com/in/dito-bayu-adhitya-36198a227/"
+            target="_blank"
           >
             LinkedIn
           </a>
           <a
             className="hover:text-cyan-500 duration-200 hover:shadow-cyan-500/50 "
             href="https://github.com/ditobayu"
+            target="_blank"
           >
             Github
           </a>
           <a
             className="hover:text-cyan-500 duration-200 hover:shadow-cyan-500/50  "
             href="https://www.instagram.com/_ditobayu/"
+            target="_blank"
           >
             Instagram
           </a>
