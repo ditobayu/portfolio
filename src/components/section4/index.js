@@ -78,7 +78,7 @@ const Section4 = () => {
       className=" flex flex-col dark:bg-slate-900 bg-slate-200 pt-4 sm:pt-8 md:pt-12 p-4 sm:p-12 md:p-20 w-full overflow-x-scroll noScrollbar"
     >
       <div>Testimonials</div>
-      <div className="mt-4 text-4xl font-semibold mb-4 sm:mb-20">
+      <div className="mt-4 sm:text-4xl text-xl font-semibold mb-4 sm:mb-20">
         What Client Say
       </div>
       <motion.div className="flex flex-row justify-center gap-4 ">

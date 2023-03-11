@@ -18,8 +18,11 @@ const Section5 = () => {
     }
   };
   const [response, setResponse] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading2, setIsLoading2] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
     await fetch("https://asdasdasd-ditobayu.vercel.app/auth/sendfeedback", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -40,6 +43,11 @@ const Section5 = () => {
       email: "",
       message: "",
     });
+    setIsLoading(false);
+    setIsLoading2(true);
+    setTimeout(() => {
+      setIsLoading2(false);
+    }, 2000);
   };
   return (
     <div>
@@ -105,13 +113,48 @@ const Section5 = () => {
                 Message
               </span>
             </div>
-            <div className="flex flex-row-reverse">
+            <div className="flex flex-row-reverse items-center">
               <button
                 type="submit"
                 className="bg-cyan-500 p-2 w-52 hover:scale-105 duration-300 hover:shadow-md hover:shadow-cyan-500/50"
               >
                 Send Message
               </button>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="#828282"
+                className={`${
+                  isLoading ? "flex" : "hidden"
+                } h-6 w-6 duration-200 animate-spin mr-2`}
+                viewBox="0 0 16 16"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M8 3a5 5 0 1 0 4.546 2.914.5.5 0 0 1 .908-.417A6 6 0 1 1 8 2v1z"
+                />
+                <path d="M8 4.466V.534a.25.25 0 0 1 .41-.192l2.36 1.966c.12.1.12.284 0 .384L8.41 4.658A.25.25 0 0 1 8 4.466z" />
+              </svg>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="#828282"
+                className={`${
+                  isLoading2 ? "flex" : "scale-0"
+                } h-6 w-6 duration-200 mr-2`}
+                viewBox="0 0 16 16"
+              >
+                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+              </svg>
+              <p
+                className={`${
+                  isLoading2 ? "flex" : "scale-0"
+                }  duration-200 mr-2`}
+              >
+                I will reply as soon as possible
+              </p>
             </div>
           </form>
         </div>

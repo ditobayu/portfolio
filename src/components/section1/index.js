@@ -25,8 +25,7 @@ const Section1 = () => {
             Lets Talk
           </a>
           <a
-            href="/logo192.png"
-            download="Dito-Bayu-CV"
+            href="dito-bayu-adhitya-cv.pdf"
             className="text-xs sm:text-lg border-b-2 border-cyan-500"
           >
             Download CV
