@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import lokerin from "../../assets/Lokerin.png";
 import taskmanager from "../../assets/taskmanager.png";
+import dooit from "../../assets/dooit.png";
 import Projek from "./projek";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -19,6 +20,13 @@ const Section3 = () => {
       img: taskmanager,
       category: ["frontend", "backend"],
       link: "https://managertugas.vercel.app/",
+    },
+    {
+      name: "Doo-IT",
+      desc: "My final project for Dasar Desain Antar Muka University Course",
+      img: dooit,
+      category: ["frontend", "backend"],
+      link: "https://doo-it.vercel.app/",
     },
   ];
 
