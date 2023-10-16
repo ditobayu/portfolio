@@ -9,8 +9,8 @@ const Section2 = () => {
       <div>My Services</div>
       <div className="mt-4 sm:text-4xl text-xl font-semibold">What I Do</div>
       <div className="mt-4 sm:mt-12 md:mt-20 flex flex-row justify-evenly">
-        <div className="p-2 md:p-8 gap-2 md:gap-8 h-24 sm:h-44 md:h-72 w-24 sm:w-44 md:w-72 dark:bg-slate-700 bg-slate-300 rounded-lg flex flex-col items-center ">
-          <div className="mt-4 w-6 sm:w-16 md:w-24 flex justify-center">
+        <div className="p-2 md:p-8 gap-2 md:gap-2 h-24 sm:h-44 md:h-72 w-24 sm:w-44 md:w-72 dark:bg-slate-700 bg-slate-300 rounded-lg flex flex-col items-center ">
+          <div className="mt-2 w-6 sm:w-16 md:w-24 flex justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="84"
@@ -30,8 +30,8 @@ const Section2 = () => {
             development.
           </div>
         </div>
-        <div className="p-2 md:p-8 gap-2 md:gap-8 h-24 sm:h-44 md:h-72 w-24 sm:w-44 md:w-72 dark:bg-slate-700 bg-slate-300 rounded-lg flex flex-col items-center ">
-          <div className="mt-4 w-6 sm:w-16 md:w-24 flex justify-center items-center">
+        <div className="p-2 md:p-8 gap-2 md:gap-2 h-24 sm:h-44 md:h-72 w-24 sm:w-44 md:w-72 dark:bg-slate-700 bg-slate-300 rounded-lg flex flex-col items-center ">
+          <div className="mt-0 w-6 sm:w-16 md:w-24 flex justify-center items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="84"
@@ -53,8 +53,8 @@ const Section2 = () => {
             innovative concepts.
           </div>
         </div>
-        <div className="p-2 md:p-8 gap-2 md:gap-8 h-24 sm:h-44 md:h-72 w-24 sm:w-44 md:w-72 dark:bg-slate-700 bg-slate-300 rounded-lg flex flex-col items-center ">
-          <div className="mt-4 w-6 sm:w-16 md:w-24 flex justify-center">
+        <div className="p-2 md:p-8 gap-2 md:gap-2 h-24 sm:h-44 md:h-72 w-24 sm:w-44 md:w-72 dark:bg-slate-700 bg-slate-300 rounded-lg flex flex-col items-center ">
+          <div className="mt-2 w-6 sm:w-16 md:w-24 flex justify-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="84"
