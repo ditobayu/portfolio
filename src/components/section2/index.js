@@ -1,83 +1,245 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const Section2 = () => {
+gsap.registerPlugin(ScrollTrigger);
+
+const About = () => {
+  const sectionRef = useRef(null);
+  const headingRef = useRef(null);
+  const textRef = useRef(null);
+  const skillsRef = useRef(null);
+  const marqueeRef = useRef(null);
+
+  const skills = [
+    "React",
+    "Next.js",
+    "JavaScript",
+    "TypeScript",
+    "Node.js",
+    "Flutter",
+    "Tailwind CSS",
+    "GSAP",
+    "Figma",
+    "UI/UX Design",
+  ];
+
+  const services = [
+    {
+      number: "01",
+      title: "Web Development",
+      description:
+        "Building modern, responsive web applications with cutting-edge technologies and best practices.",
+    },
+    {
+      number: "02",
+      title: "UI/UX Design",
+      description:
+        "Creating intuitive and visually stunning interfaces that deliver exceptional user experiences.",
+    },
+    {
+      number: "03",
+      title: "Mobile Development",
+      description:
+        "Crafting cross-platform mobile applications using Flutter for seamless performance.",
+    },
+  ];
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Heading reveal animation
+      gsap.from(headingRef.current, {
+        y: 100,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: headingRef.current,
+          start: "top 80%",
+          end: "top 50%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // Text reveal animation
+      gsap.from(textRef.current, {
+        y: 50,
+        opacity: 0,
+        duration: 1,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: textRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // Skills animation
+      gsap.from(skillsRef.current.children, {
+        y: 30,
+        opacity: 0,
+        stagger: 0.1,
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: skillsRef.current,
+          start: "top 80%",
+          toggleActions: "play none none reverse",
+        },
+      });
+
+      // Services animation
+      const serviceCards = document.querySelectorAll(".service-card");
+      serviceCards.forEach((card, index) => {
+        gsap.from(card, {
+          y: 80,
+          opacity: 0,
+          duration: 1,
+          delay: index * 0.2,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: card,
+            start: "top 85%",
+            toggleActions: "play none none reverse",
+          },
+        });
+      });
+
+      // Parallax effect on heading
+      gsap.to(headingRef.current, {
+        yPercent: -20,
+        ease: "none",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
+
   return (
-    <div
-      id="section2"
-      className="flex flex-col dark:bg-slate-900 bg-slate-200 p-4 sm:p-12 md:p-20 pb-0 pt-8 sm:pt-12 w-full"
+    <section
+      ref={sectionRef}
+      id="about"
+      className="relative py-32 md:py-48 bg-[#0a0a0a] overflow-hidden"
     >
-      <div>My Services</div>
-      <div className="mt-4 sm:text-4xl text-xl font-semibold">What I Do</div>
-      <div className="mt-4 sm:mt-12 md:mt-20 flex flex-row justify-evenly">
-        <div className="p-2 md:p-8 gap-2 md:gap-2 h-24 sm:h-44 md:h-72 w-24 sm:w-44 md:w-72 dark:bg-slate-700 bg-slate-300 rounded-lg flex flex-col items-center ">
-          <div className="mt-2 w-6 sm:w-16 md:w-24 flex justify-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="84"
-              height="84"
-              fill="currentColor"
-              className="w-full h-full bi bi-code-slash"
-              viewBox="0 0 16 16"
-            >
-              <path d="M10.478 1.647a.5.5 0 1 0-.956-.294l-4 13a.5.5 0 0 0 .956.294l4-13zM4.854 4.146a.5.5 0 0 1 0 .708L1.707 8l3.147 3.146a.5.5 0 0 1-.708.708l-3.5-3.5a.5.5 0 0 1 0-.708l3.5-3.5a.5.5 0 0 1 .708 0zm6.292 0a.5.5 0 0 0 0 .708L14.293 8l-3.147 3.146a.5.5 0 0 0 .708.708l3.5-3.5a.5.5 0 0 0 0-.708l-3.5-3.5a.5.5 0 0 0-.708 0z" />
-            </svg>
+      {/* Background accent */}
+      <div className="circle-accent top-1/2 right-0 translate-x-1/2 -translate-y-1/2" />
+
+      <div className="max-w-7xl mx-auto px-6 md:px-12">
+        {/* Section header */}
+        <div className="mb-20 md:mb-32">
+          <span className="section-label">About Me</span>
+          <h2 ref={headingRef} className="section-title max-w-4xl">
+            I create{" "}
+            <span className="text-gradient">digital experiences</span> that
+            combine aesthetics with functionality
+          </h2>
+        </div>
+
+        {/* Two column layout */}
+        <div className="grid md:grid-cols-2 gap-16 md:gap-24 mb-32">
+          {/* Left column - Description */}
+          <div ref={textRef}>
+            <p className="text-lg md:text-xl text-[#888] leading-relaxed mb-8">
+              I'm a creative developer based in Malang, Indonesia. With a
+              passion for clean code and beautiful design, I transform ideas
+              into engaging digital products.
+            </p>
+            <p className="text-lg md:text-xl text-[#888] leading-relaxed mb-12">
+              Currently pursuing my degree while taking on exciting projects
+              that challenge my skills and push creative boundaries.
+            </p>
+            <a href="#contact" className="btn-outline magnetic">
+              <span>Get in Touch</span>
+              <svg
+                width="12"
+                height="12"
+                viewBox="0 0 12 12"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M1 11L11 1M11 1H1M11 1V11"
+                  stroke="currentColor"
+                  strokeWidth="1.5"
+                />
+              </svg>
+            </a>
           </div>
-          <div className="text-xs sm:text-sm text-center md:text-xl">
-            Web Development
-          </div>
-          <div className="hidden sm:flex text-center text-xs sm:text-sm h-12">
-            I possess the capability to proficiently engage in simple web
-            development.
+
+          {/* Right column - Skills */}
+          <div>
+            <h3 className="text-sm font-medium tracking-[0.2em] uppercase text-[#888] mb-8">
+              Technologies & Skills
+            </h3>
+            <div ref={skillsRef} className="flex flex-wrap gap-3">
+              {skills.map((skill, index) => (
+                <span key={index} className="skill-item">
+                  {skill}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
-        <div className="p-2 md:p-8 gap-2 md:gap-2 h-24 sm:h-44 md:h-72 w-24 sm:w-44 md:w-72 dark:bg-slate-700 bg-slate-300 rounded-lg flex flex-col items-center ">
-          <div className="mt-0 w-6 sm:w-16 md:w-24 flex justify-center items-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="84"
-              height="84"
-              fill="currentColor"
-              className="w-full h-full bi bi-palette"
-              viewBox="0 0 16 16"
-            >
-              <path d="M8 5a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zm4 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3zM5.5 7a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm.5 6a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z" />
-              <path d="M16 8c0 3.15-1.866 2.585-3.567 2.07C11.42 9.763 10.465 9.473 10 10c-.603.683-.475 1.819-.351 2.92C9.826 14.495 9.996 16 8 16a8 8 0 1 1 8-8zm-8 7c.611 0 .654-.171.655-.176.078-.146.124-.464.07-1.119-.014-.168-.037-.37-.061-.591-.052-.464-.112-1.005-.118-1.462-.01-.707.083-1.61.704-2.314.369-.417.845-.578 1.272-.618.404-.038.812.026 1.16.104.343.077.702.186 1.025.284l.028.008c.346.105.658.199.953.266.653.148.904.083.991.024C14.717 9.38 15 9.161 15 8a7 7 0 1 0-7 7z" />
-            </svg>
-          </div>
-          <div className="text-xs sm:text-sm text-center md:text-xl">
-            Design
-          </div>
-          <div className="hidden sm:flex text-center text-xs sm:text-sm ">
-            I have a strong aptitude for creative design, where I skillfully
-            bring ideas to life with a keen eye for aesthetic details and
-            innovative concepts.
-          </div>
+
+        {/* Divider */}
+        <div className="divider mb-32" />
+
+        {/* Services */}
+        <div className="mb-20">
+          <span className="section-label">What I Do</span>
         </div>
-        <div className="p-2 md:p-8 gap-2 md:gap-2 h-24 sm:h-44 md:h-72 w-24 sm:w-44 md:w-72 dark:bg-slate-700 bg-slate-300 rounded-lg flex flex-col items-center ">
-          <div className="mt-2 w-6 sm:w-16 md:w-24 flex justify-center">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="84"
-              height="84"
-              fill="currentColor"
-              className="w-full h-full bi bi-phone"
-              viewBox="0 0 16 16"
+
+        <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+          {services.map((service, index) => (
+            <div
+              key={index}
+              className="service-card group p-8 md:p-10 border border-[#222] rounded-2xl hover:border-[#c9ff00] transition-all duration-500 hover:bg-[#111]"
             >
-              <path d="M11 1a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h6zM5 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H5z" />
-              <path d="M8 14a1 1 0 1 0 0-2 1 1 0 0 0 0 2z" />
-            </svg>
-          </div>
-          <div className="text-xs sm:text-sm text-center md:text-xl">
-            Mobile Development
-          </div>
-          <div className="hidden sm:flex text-center text-xs sm:text-sm h-12">
-            I excel in mobile development using Flutter, showcasing my expertise
-            in crafting dynamic and efficient applications.
+              <span className="text-5xl md:text-7xl font-display font-bold text-[#222] group-hover:text-[#c9ff00] transition-colors duration-500">
+                {service.number}
+              </span>
+              <h3 className="text-xl md:text-2xl font-display font-semibold mt-6 mb-4">
+                {service.title}
+              </h3>
+              <p className="text-[#888] leading-relaxed">
+                {service.description}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Marquee */}
+      <div ref={marqueeRef} className="mt-32 md:mt-48 py-8 border-y border-[#222]">
+        <div className="marquee">
+          <div className="marquee-content">
+            {[...Array(2)].map((_, i) => (
+              <React.Fragment key={i}>
+                <span className="text-4xl md:text-6xl font-display font-bold text-[#222]">
+                  WEB DEVELOPMENT
+                </span>
+                <span className="text-[#c9ff00] text-4xl">★</span>
+                <span className="text-4xl md:text-6xl font-display font-bold text-[#222]">
+                  UI/UX DESIGN
+                </span>
+                <span className="text-[#c9ff00] text-4xl">★</span>
+                <span className="text-4xl md:text-6xl font-display font-bold text-[#222]">
+                  MOBILE APPS
+                </span>
+                <span className="text-[#c9ff00] text-4xl">★</span>
+              </React.Fragment>
+            ))}
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default Section2;
+export default About;

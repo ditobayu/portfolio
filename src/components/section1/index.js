@@ -1,88 +1,248 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import foto from "../../assets/foto.JPG";
 
-const Section1 = () => {
+gsap.registerPlugin(ScrollTrigger);
+
+const Hero = () => {
+  const heroRef = useRef(null);
+  const titleRef = useRef(null);
+  const subtitleRef = useRef(null);
+  const imageRef = useRef(null);
+  const ctaRef = useRef(null);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      // Master timeline
+      const tl = gsap.timeline({ delay: 2.5 });
+
+      // Title animation - letter by letter
+      const titleChars = titleRef.current.querySelectorAll(".char");
+      tl.from(titleChars, {
+        y: 200,
+        opacity: 0,
+        rotateX: -90,
+        stagger: 0.05,
+        duration: 1.2,
+        ease: "power4.out",
+      });
+
+      // Subtitle animation
+      tl.from(
+        subtitleRef.current,
+        {
+          y: 50,
+          opacity: 0,
+          duration: 1,
+          ease: "power3.out",
+        },
+        "-=0.5"
+      );
+
+      // Image animation
+      tl.from(
+        imageRef.current,
+        {
+          scale: 1.5,
+          opacity: 0,
+          duration: 1.5,
+          ease: "power3.out",
+        },
+        "-=0.8"
+      );
+
+      // CTA buttons animation
+      tl.from(
+        ctaRef.current.children,
+        {
+          y: 30,
+          opacity: 0,
+          stagger: 0.1,
+          duration: 0.8,
+          ease: "power3.out",
+        },
+        "-=0.5"
+      );
+
+      // Parallax effect on scroll
+      gsap.to(titleRef.current, {
+        yPercent: 50,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      gsap.to(imageRef.current, {
+        yPercent: 30,
+        scale: 1.1,
+        ease: "none",
+        scrollTrigger: {
+          trigger: heroRef.current,
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+    }, heroRef);
+
+    return () => ctx.revert();
+  }, []);
+
+  // Split text into characters
+  const splitText = (text) => {
+    return text.split("").map((char, i) => (
+      <span
+        key={i}
+        className="char inline-block"
+        style={{ display: char === " " ? "inline" : "inline-block" }}
+      >
+        {char === " " ? "\u00A0" : char}
+      </span>
+    ));
+  };
+
   return (
-    <div
-      id="section1"
-      className="flex flex-row bg-slate-100 dark:bg-slate-800 dark:text-white w-full"
+    <section
+      ref={heroRef}
+      id="hero"
+      className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-[#0a0a0a]"
     >
-      <div className="flex-1 flex flex-col pl-8 sm:pl-12 md:pl-20 p-4 pt-12 sm:pt-20 md:pt-52 ">
-        <span className="text-xs sm:text-lg">Hello, I'm</span>
-        <span className="text-md sm:text-3xl dark:text-cyan-300 text-cyan-500 ">
-          Dito Bayu Adhitya
-        </span>
-        <span className="text-xs sm:text-xl">Programmer</span>
-        <span className="text-xs sm:text-lg">
-          My name is Dito Bayu Adhitya. I'm still in college now but very open
-          to doing projects together
-        </span>
-        <div className="flex flex-row items-center mt-4 gap-2 sm:gap-8">
-          <a
-            href="#section5"
-            className="text-xs sm:text-lg bg-cyan-400 rounded-lg py-2 px-2 sm:px-4 font-semibold shadow-md hover:shadow-lg hover:shadow-cyan-500/50 shadow-cyan-500/50 duration-100"
-          >
-            Lets Talk
-          </a>
-          <a
-            href="dito-bayu-adhitya-cv.pdf"
-            className="text-xs sm:text-lg border-b-2 border-cyan-500"
-          >
-            Download CV
-          </a>
+      {/* Background gradient circles */}
+      <div className="circle-accent top-[-200px] left-[-200px]" />
+      <div className="circle-accent bottom-[-200px] right-[-200px] bg-gradient-to-r from-[#00fff0] to-transparent" />
+
+      {/* Main content */}
+      <div className="relative z-10 px-6 md:px-12 lg:px-20 pt-32 pb-20">
+        <div className="max-w-7xl mx-auto">
+          {/* Subtitle */}
+          <div ref={subtitleRef} className="mb-8">
+            <span className="section-label">Creative Developer</span>
+          </div>
+
+          {/* Main title */}
+          <div className="relative">
+            <h1 ref={titleRef} className="hero-title mb-8">
+              <span className="block">{splitText("DITO")}</span>
+              <span className="block">{splitText("BAYU")}</span>
+              <span className="block">{splitText("ADITYA")}</span>
+            </h1>
+          </div>
+
+          {/* Description and CTA */}
+          <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-12 mt-12">
+            <p className="max-w-md text-lg text-[#888] leading-relaxed">
+              A passionate developer crafting digital experiences that blend
+              creativity with cutting-edge technology. Open for exciting
+              collaborations and new projects.
+            </p>
+
+            <div ref={ctaRef} className="flex flex-wrap gap-4">
+              <a href="#contact" className="btn-primary magnetic">
+                <span>Let's Talk</span>
+                <svg
+                  width="12"
+                  height="12"
+                  viewBox="0 0 12 12"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M1 11L11 1M11 1H1M11 1V11"
+                    stroke="currentColor"
+                    strokeWidth="1.5"
+                  />
+                </svg>
+              </a>
+              <a href="#projects" className="btn-outline magnetic">
+                <span>View Work</span>
+              </a>
+            </div>
+          </div>
         </div>
-        <div className="flex flex-row my-2 md:my-12 gap-1 sm:gap-4 items-center py-4">
-          <div className="mr-2 sm:mr-8 text-xs sm:text-md">Check Out My</div>
-          <a
-            className="mr-2"
-            href="https://github.com/ditobayu"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="currentColor"
-              class="bi bi-github"
-              viewBox="0 0 16 16"
-            >
-              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.012 8.012 0 0 0 16 8c0-4.42-3.58-8-8-8z" />
-            </svg>
-          </a>
-          <a className="mr-2"
-            href="https://www.linkedin.com/in/dito-bayu-adhitya-36198a227/"
-          >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="currentColor"
-              class="bi bi-linkedin"
-              viewBox="0 0 16 16"
-            >
-              <path d="M0 1.146C0 .513.526 0 1.175 0h13.65C15.474 0 16 .513 16 1.146v13.708c0 .633-.526 1.146-1.175 1.146H1.175C.526 16 0 15.487 0 14.854V1.146zm4.943 12.248V6.169H2.542v7.225h2.401zm-1.2-8.212c.837 0 1.358-.554 1.358-1.248-.015-.709-.52-1.248-1.342-1.248-.822 0-1.359.54-1.359 1.248 0 .694.521 1.248 1.327 1.248h.016zm4.908 8.212V9.359c0-.216.016-.432.08-.586.173-.431.568-.878 1.232-.878.869 0 1.216.662 1.216 1.634v3.865h2.401V9.25c0-2.22-1.184-3.252-2.764-3.252-1.274 0-1.845.7-2.165 1.193v.025h-.016a5.54 5.54 0 0 1 .016-.025V6.169h-2.4c.03.678 0 7.225 0 7.225h2.4z" />
-            </svg>
-          </a>
-          <a className="mr-2" href="https://www.instagram.com/_ditobayu/">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="currentColor"
-              class="bi bi-instagram"
-              viewBox="0 0 16 16"
-            >
-              <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z" />
-            </svg>
-          </a>
+
+        {/* Floating image */}
+        <div className="absolute top-1/2 right-0 -translate-y-1/2 w-[300px] h-[400px] md:w-[400px] md:h-[500px] lg:w-[500px] lg:h-[600px] overflow-hidden rounded-2xl opacity-30 lg:opacity-100">
+          <div ref={imageRef} className="w-full h-full">
+            <img
+              src={foto}
+              alt="Dito Bayu Adhitya"
+              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+            />
+          </div>
         </div>
       </div>
-      <div className="w-4/12 md:w-6/12 flex justify-center items-center mr-4">
-        <div className="h-24 sm:h-52 md:h-96 w-24 sm:w-52 md:w-96 rounded-full overflow-hidden floating">
-          <img src={foto} className="" alt="images" />
+
+      {/* Scroll indicator */}
+      <div className="scroll-indicator">
+        <span className="text-xs tracking-[0.3em] uppercase">Scroll</span>
+        <div className="scroll-line" />
+      </div>
+
+      {/* Social links */}
+      <div className="absolute left-6 md:left-12 bottom-12 flex flex-col gap-6">
+        <a
+          href="https://github.com/ditobayu"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#888] hover:text-[#c9ff00] transition-colors duration-300"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+          </svg>
+        </a>
+        <a
+          href="https://www.linkedin.com/in/dito-bayu-adhitya-36198a227/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#888] hover:text-[#c9ff00] transition-colors duration-300"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
+          </svg>
+        </a>
+        <a
+          href="https://www.instagram.com/_ditobayu/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-[#888] hover:text-[#c9ff00] transition-colors duration-300"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+          >
+            <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z" />
+          </svg>
+        </a>
+      </div>
+
+      {/* Available for work badge */}
+      <div className="absolute right-6 md:right-12 bottom-12">
+        <div className="flex items-center gap-3 px-4 py-2 rounded-full border border-[#222] glass">
+          <span className="w-2 h-2 rounded-full bg-[#c9ff00] animate-pulse" />
+          <span className="text-xs tracking-wider text-[#888] uppercase">
+            Available for work
+          </span>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
-export default Section1;
+export default Hero;
