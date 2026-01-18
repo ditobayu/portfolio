@@ -114,7 +114,7 @@ const Testimonials = () => {
             </div>
             <div>
               <div className="text-3xl md:text-4xl font-display font-bold text-[#c9ff00]">
-                2+
+                1+
               </div>
               <div className="text-sm text-[#888] mt-2">Years Experience</div>
             </div>
