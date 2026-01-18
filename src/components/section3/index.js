@@ -17,14 +17,23 @@ const Projects = () => {
     {
       id: 1,
       name: "Silomba",
-      description: "Sistem informasi berbasis web yang menyediakan informasi berbagai lomba dan kompetisi. Dikembangkan untuk mempermudah pengguna dalam mencari dan mengelola informasi kompetisi, sekaligus melatih kemampuan fullstack development pada studi kasus nyata.",
+      description: "Platform kompetisi online nasional yang menghubungkan mahasiswa, profesional, dan penyelenggara lomba di seluruh Indonesia. Dikembangkan secara mandiri dari konsep hingga production — mencakup web, mobile, REST API, containerization, dan CI/CD pipeline.",
       img: silomba,
       category: ["frontend", "backend"],
       link: "https://silomba.id/",
-      year: "2024",
-      tech: ["React", "Node.js", "PostgreSQL"],
-      highlights: ["Information System", "Fullstack Web App", "Real-world Problem", "Scalable Structure"],
-      role: "Fullstack Developer",
+      playStore: "https://play.google.com/store/apps/details?id=id.silomba.application",
+      year: "2025",
+      tech: ["Next.js", "React", "Flutter", "Node.js", "PostgreSQL", "Docker", "Jenkins"],
+      highlights: ["Solo Developer", "Docker & CI/CD", "Mobile + Web", "Production Ready"],
+      role: "Solo Fullstack Developer",
+      featured: true,
+      details: [
+        "Scalable fullstack architecture for web & mobile",
+        "REST API with JWT authentication",
+        "Docker containerization & Jenkins CI/CD",
+        "Instagram Graph API integration",
+        "Deployed on VPS with Nginx reverse proxy",
+      ],
     },
     {
       id: 2,
@@ -41,25 +50,25 @@ const Projects = () => {
     {
       id: 3,
       name: "Doo-IT",
-      description: "Aplikasi manajemen tugas yang dikembangkan sebagai final project mata kuliah Dasar Desain Antarmuka. Berfokus pada perancangan UI/UX yang intuitif, alur pengguna yang jelas, serta implementasi frontend dan backend yang terintegrasi.",
+      description: "Aplikasi manajemen tugas yang dikembangkan sebagai final project mata kuliah Dasar Desain Antarmuka. Berfokus pada alur pengguna yang jelas serta implementasi frontend dan backend yang terintegrasi.",
       img: dooit,
       category: ["frontend", "backend"],
       link: "https://doo-it.vercel.app/",
       year: "2023",
       tech: ["React", "Express", "MongoDB"],
-      highlights: ["UI/UX Design", "User Flow & Wireframe", "Design Consistency", "Fullstack Implementation"],
+      highlights: ["User Flow Design", "Clean Architecture", "Fullstack", "REST API"],
       role: "Fullstack Developer",
     },
     {
       id: 4,
       name: "Task Manager",
-      description: "Aplikasi manajemen tugas berbasis web yang memungkinkan pengguna untuk membuat, mengelola, dan melacak tugas harian. Personal project yang dikembangkan secara mandiri untuk mengasah kemampuan frontend dan backend selama libur semester.",
+      description: "Aplikasi manajemen tugas berbasis web yang memungkinkan pengguna untuk membuat, mengelola, dan melacak tugas harian. Personal project yang dikembangkan secara mandiri untuk mengasah kemampuan frontend dan backend.",
       img: taskmanager,
       category: ["frontend", "backend"],
       link: "https://managertugas.vercel.app/",
       year: "2023",
       tech: ["React", "Node.js", "Express"],
-      highlights: ["CRUD Operations", "Authentication", "Fullstack Implementation", "Real-life Use Case"],
+      highlights: ["CRUD Operations", "Authentication", "Fullstack", "Personal Project"],
       role: "Fullstack Developer",
     },
   ];
@@ -151,20 +160,27 @@ const Projects = () => {
         {/* Projects grid */}
         <div className="grid gap-16 md:gap-24">
           {filteredProjects.map((project, index) => (
-            <a
+            <div
               key={project.id}
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
               className="project-item group block"
             >
               <div className={`grid md:grid-cols-2 gap-8 md:gap-16 items-center ${
                 index % 2 === 1 ? "md:grid-flow-dense" : ""
               }`}>
                 {/* Image */}
-                <div className={`relative overflow-hidden rounded-2xl aspect-[4/3] ${
+                <a 
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`relative overflow-hidden rounded-2xl aspect-[4/3] block ${
                   index % 2 === 1 ? "md:col-start-2" : ""
                 }`}>
+                  {/* Featured badge */}
+                  {project.featured && (
+                    <div className="absolute top-4 left-4 z-30 px-4 py-2 bg-[#c9ff00] text-[#0a0a0a] text-xs font-bold uppercase tracking-wider rounded-full">
+                      Featured Project
+                    </div>
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#0a0a0a]/50 z-10" />
                   <img
                     src={project.img}
@@ -192,7 +208,7 @@ const Projects = () => {
                       </svg>
                     </div>
                   </div>
-                </div>
+                </a>
 
                 {/* Content */}
                 <div className={`flex flex-col ${
@@ -241,7 +257,7 @@ const Projects = () => {
                   </div>
 
                   {/* Tech stack */}
-                  <div className={`flex flex-wrap gap-2 ${
+                  <div className={`flex flex-wrap gap-2 mb-6 ${
                     index % 2 === 1 ? "md:justify-end" : ""
                   }`}>
                     {project.tech.map((tech, i) => (
@@ -253,9 +269,51 @@ const Projects = () => {
                       </span>
                     ))}
                   </div>
+
+                  {/* Details list for featured projects */}
+                  {project.details && (
+                    <div className={`mb-6 ${index % 2 === 1 ? "md:text-right" : ""}`}>
+                      <ul className={`space-y-2 text-sm text-[#666] ${index % 2 === 1 ? "md:text-right" : ""}`}>
+                        {project.details.map((detail, i) => (
+                          <li key={i} className={`flex items-center gap-2 ${index % 2 === 1 ? "md:flex-row-reverse" : ""}`}>
+                            <span className="w-1 h-1 rounded-full bg-[#c9ff00]" />
+                            {detail}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  )}
+
+                  {/* Links */}
+                  <div className={`flex flex-wrap gap-3 ${index % 2 === 1 ? "md:justify-end" : ""}`}>
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#c9ff00] text-[#0a0a0a] text-sm font-medium rounded-full hover:bg-white transition-colors"
+                    >
+                      <span>View Live</span>
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M1 11L11 1M11 1H1M11 1V11" stroke="currentColor" strokeWidth="1.5"/>
+                      </svg>
+                    </a>
+                    {project.playStore && (
+                      <a
+                        href={project.playStore}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#333] text-white text-sm font-medium rounded-full hover:border-[#c9ff00] transition-colors"
+                      >
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                          <path d="M3.609 1.814L13.792 12 3.61 22.186a.996.996 0 0 1-.61-.92V2.734a1 1 0 0 1 .609-.92zm10.89 10.893l2.302 2.302-10.937 6.333 8.635-8.635zm3.199-3.198l2.807 1.626a1 1 0 0 1 0 1.73l-2.808 1.626L15.206 12l2.492-2.491zM5.864 2.658L16.8 8.99l-2.302 2.302-8.634-8.634z"/>
+                        </svg>
+                        <span>Play Store</span>
+                      </a>
+                    )}
+                  </div>
                 </div>
               </div>
-            </a>
+            </div>
           ))}
         </div>
 

@@ -121,7 +121,7 @@ const Hero = () => {
         <div className="max-w-7xl mx-auto">
           {/* Subtitle */}
           <div ref={subtitleRef} className="mb-8">
-            <span className="section-label">Creative Developer</span>
+            <span className="section-label">Software Engineer</span>
           </div>
 
           {/* Main title */}
@@ -136,9 +136,9 @@ const Hero = () => {
           {/* Description and CTA */}
           <div className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-12 mt-12">
             <p className="max-w-md text-lg text-[#888] leading-relaxed">
-              A passionate developer crafting digital experiences that blend
-              creativity with cutting-edge technology. Open for exciting
-              collaborations and new projects.
+              A passionate Software Engineer with expertise in fullstack development,
+              mobile apps, and DevOps. Building scalable applications with React, 
+              Node.js, Golang, Flutter, Docker & Jenkins.
             </p>
 
             <div ref={ctaRef} className="flex flex-wrap gap-4">

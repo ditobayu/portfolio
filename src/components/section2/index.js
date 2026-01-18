@@ -14,34 +14,44 @@ const About = () => {
   const skills = [
     "React",
     "Next.js",
-    "JavaScript",
-    "TypeScript",
+    "Vue.js",
     "Node.js",
+    "Express.js",
+    "Golang",
+    "Laravel",
     "Flutter",
+    "PostgreSQL",
+    "MongoDB",
+    "Docker",
+    "Jenkins",
     "Tailwind CSS",
-    "GSAP",
-    "Figma",
-    "UI/UX Design",
+    "Git",
   ];
 
   const services = [
     {
       number: "01",
-      title: "Web Development",
+      title: "Frontend Development",
       description:
-        "Building modern, responsive web applications with cutting-edge technologies and best practices.",
+        "Building modern, responsive web applications with React, Next.js, Vue.js and cutting-edge frontend technologies.",
     },
     {
       number: "02",
-      title: "UI/UX Design",
+      title: "Backend Development",
       description:
-        "Creating intuitive and visually stunning interfaces that deliver exceptional user experiences.",
+        "Developing secure, scalable APIs and server-side applications using Node.js, Golang, and Laravel.",
     },
     {
       number: "03",
       title: "Mobile Development",
       description:
-        "Crafting cross-platform mobile applications using Flutter for seamless performance.",
+        "Crafting cross-platform mobile applications using Flutter with clean architecture and state management.",
+    },
+    {
+      number: "04",
+      title: "DevOps & CI/CD",
+      description:
+        "Setting up Docker containerization and Jenkins pipelines for automated build, test, and deployment workflows.",
     },
   ];
 
@@ -135,9 +145,9 @@ const About = () => {
         <div className="mb-20 md:mb-32">
           <span className="section-label">About Me</span>
           <h2 ref={headingRef} className="section-title max-w-4xl">
-            I create{" "}
-            <span className="text-gradient">digital experiences</span> that
-            combine aesthetics with functionality
+            I build{" "}
+            <span className="text-gradient">fullstack applications</span> from
+            concept to production deployment
           </h2>
         </div>
 
@@ -146,13 +156,14 @@ const About = () => {
           {/* Left column - Description */}
           <div ref={textRef}>
             <p className="text-lg md:text-xl text-[#888] leading-relaxed mb-8">
-              I'm a creative developer based in Malang, Indonesia. With a
-              passion for clean code and beautiful design, I transform ideas
-              into engaging digital products.
+              I'm a Software Engineer based in Malang, Indonesia. Information Technology
+              student at Brawijaya University with a strong foundation in fullstack development,
+              mobile apps, and DevOps practices.
             </p>
             <p className="text-lg md:text-xl text-[#888] leading-relaxed mb-12">
-              Currently pursuing my degree while taking on exciting projects
-              that challenge my skills and push creative boundaries.
+              Experienced in building production applications with React, Next.js, Node.js,
+              Golang, Laravel, and Flutter. Proficient in Docker containerization and
+              Jenkins CI/CD pipelines for automated deployments.
             </p>
             <a href="#contact" className="btn-outline magnetic">
               <span>Get in Touch</span>
@@ -195,7 +206,7 @@ const About = () => {
           <span className="section-label">What I Do</span>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 md:gap-12">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
           {services.map((service, index) => (
             <div
               key={index}
@@ -222,15 +233,19 @@ const About = () => {
             {[...Array(2)].map((_, i) => (
               <React.Fragment key={i}>
                 <span className="text-4xl md:text-6xl font-display font-bold text-[#222]">
-                  WEB DEVELOPMENT
+                  FRONTEND
                 </span>
                 <span className="text-[#c9ff00] text-4xl">★</span>
                 <span className="text-4xl md:text-6xl font-display font-bold text-[#222]">
-                  UI/UX DESIGN
+                  BACKEND
                 </span>
                 <span className="text-[#c9ff00] text-4xl">★</span>
                 <span className="text-4xl md:text-6xl font-display font-bold text-[#222]">
                   MOBILE APPS
+                </span>
+                <span className="text-[#c9ff00] text-4xl">★</span>
+                <span className="text-4xl md:text-6xl font-display font-bold text-[#222]">
+                  DEVOPS
                 </span>
                 <span className="text-[#c9ff00] text-4xl">★</span>
               </React.Fragment>
