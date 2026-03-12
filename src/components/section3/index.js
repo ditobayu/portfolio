@@ -5,6 +5,7 @@ import lokerin from "../../assets/Lokerin.png";
 import taskmanager from "../../assets/taskmanager.png";
 import silomba from "../../assets/silomba.png";
 import dooit from "../../assets/dooit.png";
+import deerank from "../../assets/Deerank.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -70,6 +71,28 @@ const Projects = () => {
       tech: ["React", "Node.js", "Express"],
       highlights: ["CRUD Operations", "Authentication", "Fullstack", "Personal Project"],
       role: "Fullstack Developer",
+    },
+    {
+      id: 5,
+      name: "Deerank",
+      description: "Deerank is an e-learning application that transforms lengthy and tedious PDF documents into interactive and engaging learning experiences. Students and professionals often find reading long PDF documents overwhelming and boring — this intelligent platform automatically converts uploaded PDFs into structured courses, generates interactive quizzes, and incorporates gamification elements like leaderboards and points.",
+      img: deerank,
+      category: ["frontend", "backend"],
+      link: "https://deerank.com/",
+      year: "2026",
+      tech: ["Next.js", "React", "Flutter", "Node.js", "PostgreSQL", "Docker", "Jenkins"],
+      highlights: ["AI-Powered PDF Conversion", "Interactive Quizzes", "Gamification", "Full Stack"],
+      role: "Fullstack Developer",
+      featured: true,
+      details: [
+        "Intelligent PDF to course conversion using AI",
+        "Interactive quiz generation with auto-grading",
+        "Gamification features: leaderboards and points system",
+        "Next.js frontend with React components",
+        "Node.js backend with PostgreSQL database",
+        "Docker containerization & Jenkins CI/CD",
+        "Deployed with scalable architecture",
+      ],
     },
   ];
 
