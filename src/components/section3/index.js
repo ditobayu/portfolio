@@ -6,6 +6,7 @@ import taskmanager from "../../assets/taskmanager.png";
 import silomba from "../../assets/silomba.png";
 import dooit from "../../assets/dooit.png";
 import deerank from "../../assets/Deerank.png";
+import baystrix from "../../assets/Baystrix.png";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -60,6 +61,28 @@ const Projects = () => {
     },
     {
       id: 3,
+      name: "Baystrix",
+      description: "Baystrix needed a modern and professional landing page to establish their online presence and elegantly showcase their digital products and services. They required a fast, responsive, and visually appealing website that could effectively communicate their value proposition and engage visitors without feeling cluttered or complex.",
+      img: baystrix,
+      category: ["frontend"],
+      link: "https://baystrix.com/",
+      year: "2026",
+      tech: ["Next.js", "React", "Tailwind CSS", "Figma"],
+      highlights: ["Modern Landing Page", "Responsive Design", "Smooth Interactions", "Brand-Focused"],
+      role: "Frontend Developer",
+      featured: true,
+      details: [
+        "Sleek, high-performance landing page design",
+        "Intuitive navigation with smooth interactions",
+        "Optimized user experience tailored to brand",
+        "Responsive across all devices",
+        "Fast loading and highly polished UI",
+        "Effectively communicates value proposition",
+        "Seamless browsing experience",
+      ],
+    },
+    {
+      id: 4,
       name: "Lokerin",
       description: "Aplikasi web untuk mencari dan melihat informasi lowongan kerja. Dikembangkan sebagai final project bootcamp React JS di Sanbercode, dengan fokus pada pengembangan antarmuka yang responsif, pengelolaan state, serta integrasi API.",
       img: lokerin,
@@ -71,7 +94,7 @@ const Projects = () => {
       role: "Frontend Developer",
     },
     {
-      id: 4,
+      id: 5,
       name: "Doo-IT",
       description: "Aplikasi manajemen tugas yang dikembangkan sebagai final project mata kuliah Dasar Desain Antarmuka. Berfokus pada alur pengguna yang jelas serta implementasi frontend dan backend yang terintegrasi.",
       img: dooit,
@@ -83,7 +106,7 @@ const Projects = () => {
       role: "Fullstack Developer",
     },
     {
-      id: 5,
+      id: 6,
       name: "Task Manager",
       description: "Aplikasi manajemen tugas berbasis web yang memungkinkan pengguna untuk membuat, mengelola, dan melacak tugas harian. Personal project yang dikembangkan secara mandiri untuk mengasah kemampuan frontend dan backend.",
       img: taskmanager,
